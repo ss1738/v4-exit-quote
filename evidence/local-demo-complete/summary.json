@@ -1,0 +1,78 @@
+{
+  "scope": "private local Anvil, mock tokens; not live-user adoption or mainnet execution",
+  "checks": {
+    "cli_quotes_without_state_changes": true,
+    "naive_minimum_reverts": true,
+    "corrected_full_withdrawal_executes": true,
+    "partial_withdrawal_executes": true,
+    "mature_withdrawal_executes": true,
+    "hookless_withdrawal_executes": true,
+    "native_currency_withdrawal_executes": true,
+    "wrong_chain_refused": true
+  },
+  "full_execution": {
+    "transaction_hash": "0x0fbe5c750016283b358a4eb579d3270038ef16cc9d43ee8cdf9da818cd327f4e",
+    "receipt_status": "0x1",
+    "actual_receipts_excluding_transaction_gas": [
+      "5985137760509662",
+      "5985137760509662"
+    ],
+    "quoted_caller_delta": [
+      "5981737760509662",
+      "5981737760509662"
+    ],
+    "note": "Executed in a later block; the fixture's age-based penalty may decrease."
+  },
+  "partial_execution": {
+    "transaction_hash": "0x1212d8ab9c060deda1f108bf48dfc89c38223e5b0daae4afc80608d2f0bcaa46",
+    "receipt_status": "0x1",
+    "actual_receipts_excluding_transaction_gas": [
+      "2994268880254831",
+      "2994268880254831"
+    ],
+    "quoted_caller_delta": [
+      "2990868880254831",
+      "2990868880254831"
+    ],
+    "note": "Executed in a later block; the fixture's age-based penalty may decrease."
+  },
+  "mature_execution": {
+    "transaction_hash": "0xb445c4247708ba280fd9238f6ff9bcf38542f4113287a90de328b62ce6df0219",
+    "receipt_status": "0x1",
+    "actual_receipts_excluding_transaction_gas": [
+      "6981737760509661",
+      "6981737760509661"
+    ],
+    "quoted_caller_delta": [
+      "6981737760509661",
+      "6981737760509661"
+    ],
+    "note": "Executed in a later block; the fixture's age-based penalty may decrease."
+  },
+  "hookless_execution": {
+    "transaction_hash": "0x24bd517a4e09573b641783fe03f872a832d171d2d5a248f5796ddc307ba81a90",
+    "receipt_status": "0x1",
+    "actual_receipts_excluding_transaction_gas": [
+      "6981737760509661",
+      "6981737760509661"
+    ],
+    "quoted_caller_delta": [
+      "6981737760509661",
+      "6981737760509661"
+    ],
+    "note": "Executed in a later block; the fixture's age-based penalty may decrease."
+  },
+  "native_execution": {
+    "transaction_hash": "0x8148abfa6e3723e33f05d7d9c20e505df4cc7697107f460d83c0e9019fb87cf4",
+    "receipt_status": "0x1",
+    "actual_receipts_excluding_transaction_gas": [
+      "5981737760509662",
+      "5981737760509662"
+    ],
+    "quoted_caller_delta": [
+      "5981737760509662",
+      "5981737760509662"
+    ],
+    "note": "Executed in a later block; the fixture's age-based penalty may decrease."
+  }
+}

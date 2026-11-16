@@ -1,0 +1,13 @@
+{
+  "block_number": 1000,
+  "currency0": "0x15cF58144EF33af1e14b5208015d11F9143E27b9",
+  "currency1": "0xD6BbDE9174b1CdAa358d2Cf4D57D1a9F7178FBfF",
+  "liquidity": 1000000000000000000,
+  "native_token_id": 3,
+  "owner": "0x1111222233334444555566667777888899990000",
+  "pool_manager": "0x000000000004444c5dc75cB358380D2e3dE08A90",
+  "position_manager": "0x212224D2F2d262cd093eE13240ca4873fcCBbA3C",
+  "timestamp": 1,
+  "token_id": 1,
+  "vanilla_token_id": 2
+}

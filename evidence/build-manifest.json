@@ -1,0 +1,23 @@
+{
+  "version": "0.1.0",
+  "recorded_at_utc": "2026-11-16T11:23:56.028179+00:00",
+  "unit_tests_passed": 21,
+  "local_integration_checks_passed": 8,
+  "local_transactions_succeeded": 5,
+  "integration_summary": "evidence/local-demo-complete/summary.json",
+  "scope": "Local Anvil fixtures, not a live-user fork or adoption evidence.",
+  "runtime_python_dependencies": [],
+  "source_revisions": {
+    "v4-periphery": "c6e4754dab11bd38c6f08ac51c3c868569e93d64",
+    "v4-core": "59d3ecf53afa9264a16bba0e38f4c5d2231f80bc",
+    "permit2": "cc56ad0f3439c502c246fc5cfcc3db92bb8b7219",
+    "solmate": "8d910d876f51c3b2585c9109409d601f600e68e1"
+  },
+  "sha256": {
+    "examples/local-genesis.json": "702bd10583676b9de25002aa68b3942b1471f5668f356a7ffec9a76caba170ae",
+    "examples/run_local_demo.py": "65b349dee524d2497bc4c3ffe5e5d658dc5740cd0eea36d651cf4ddb7427efc0",
+    "v4_exit_quote/__init__.py": "6cbbba4f012c1d250d965972599dc208a06bc4c285f63d9f1b592f5085ffc0eb",
+    "v4_exit_quote/__main__.py": "e65447df25287b775bd4907dc2adb68dc2c6c2e4add980317ed495823795d2f8",
+    "v4_exit_quote/core.py": "a1f269da3d75bdd710184dc71d12f0a03c9362abe7305519c04e202f524bbcfe"
+  }
+}

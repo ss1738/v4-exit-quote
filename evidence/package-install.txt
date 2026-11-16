@@ -1,0 +1,3 @@
+MEASURED: built v4_exit_quote-0.1.0-py3-none-any.whl, installed it with --no-index --no-deps in an isolated virtual environment, and ran v4-exit-quote --version successfully.
+Output: v4-exit-quote 0.1.0
+Wheel SHA256: dad80110b80e1777c042cbb1464e5333eaa3fafa31caf5f4fb8e5e1076588b78

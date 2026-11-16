@@ -1,0 +1,19 @@
+[profile.default]
+src = "src"
+test = "test"
+libs = ["../v4-periphery/lib"]
+allow_paths = ["../v4-periphery"]
+solc_version = "0.8.26"
+evm_version = "cancun"
+optimizer = true
+optimizer_runs = 200
+via_ir = true
+fs_permissions = [{ access = "read", path = "../halo-initial-rpc.json" }, { access = "read-write", path = "./fixture" }]
+remappings = [
+  "@uniswap/v4-core/=../v4-periphery/lib/v4-core/",
+  "v4-periphery/=../v4-periphery/",
+  "forge-std/=../v4-periphery/lib/v4-core/lib/forge-std/src/",
+  "solmate/=../v4-periphery/lib/permit2/lib/solmate/",
+  "permit2/=../v4-periphery/lib/permit2/",
+  "openzeppelin-contracts/=../v4-periphery/lib/v4-core/lib/openzeppelin-contracts/"
+]

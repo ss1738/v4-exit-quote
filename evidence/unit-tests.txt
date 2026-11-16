@@ -1,0 +1,26 @@
+test_bad_addresses (test_quote.QuoteTests.test_bad_addresses) ... ok
+test_dynamic_hook_data_changes_encoded_operation (test_quote.QuoteTests.test_dynamic_hook_data_changes_encoded_operation) ... ok
+test_full_quote_and_block_pinning (test_quote.QuoteTests.test_full_quote_and_block_pinning) ... ok
+test_invalid_liquidity (test_quote.QuoteTests.test_invalid_liquidity) ... ok
+test_invalid_slippage (test_quote.QuoteTests.test_invalid_slippage) ... ok
+test_known_penalty_case_and_rounding (test_quote.QuoteTests.test_known_penalty_case_and_rounding) ... ok
+test_mismatched_root_refused (test_quote.QuoteTests.test_mismatched_root_refused) ... ok
+test_missing_trace_refused (test_quote.QuoteTests.test_missing_trace_refused) ... ok
+test_multiple_or_wrong_manager_calls_refused (test_quote.QuoteTests.test_multiple_or_wrong_manager_calls_refused) ... ok
+test_negative_component_refused (test_quote.QuoteTests.test_negative_component_refused) ... ok
+test_partial_and_asymmetric_amounts (test_quote.QuoteTests.test_partial_and_asymmetric_amounts) ... ok
+test_reorg_refused (test_quote.QuoteTests.test_reorg_refused) ... ok
+test_reverted_trace_refused (test_quote.QuoteTests.test_reverted_trace_refused) ... ok
+test_signed_overflow_refused (test_quote.QuoteTests.test_signed_overflow_refused) ... ok
+test_signed_packed_deltas (test_quote.QuoteTests.test_signed_packed_deltas) ... ok
+test_smart_wallet_owner_refused (test_quote.QuoteTests.test_smart_wallet_owner_refused) ... ok
+test_subscribed_position_refused (test_quote.QuoteTests.test_subscribed_position_refused) ... ok
+test_unstable_simulation_refused (test_quote.QuoteTests.test_unstable_simulation_refused) ... ok
+test_write_methods_unavailable (test_quote.QuoteTests.test_write_methods_unavailable) ... ok
+test_wrong_chain (test_quote.QuoteTests.test_wrong_chain) ... ok
+test_wrong_owner (test_quote.QuoteTests.test_wrong_owner) ... ok
+
+----------------------------------------------------------------------
+Ran 21 tests in 0.002s
+
+OK
