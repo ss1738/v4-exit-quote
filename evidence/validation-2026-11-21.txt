@@ -1,0 +1,41 @@
+Validation record, 2026-11-21 (UTC). This is a separate record. It does not replace
+evidence/unit-tests.txt, evidence/lint.txt, evidence/format.txt or
+evidence/build-manifest.json, which describe the revision recorded on 2026-11-16
+(their core.py hash matches that revision) and are left unchanged.
+
+Scope: RPC hex-quantity parsing in v4_exit_quote/core.py (new helper quantity()).
+Base revision: a93576276086048433918e0c2a984f904bdf182d, the parent of the commit that
+adds this file. The validated change is that commit's change to v4_exit_quote/core.py
+and tests/test_quote.py.
+Runtime: Python 3.15.0, ruff 0.17.6, Darwin arm64
+
+Changed-file sha256 (working tree):
+  v4_exit_quote/core.py  80e1f83a291a38beeb24a1f16a2b1bfa86f7564d410528eb99b0c2db56fb0c66
+  tests/test_quote.py    712dcaac9fa255c979fc23b71df769ef4fbd1dd8a9d571e9cc3b58f76e55859a
+
+Commands and results:
+  python3 -m unittest discover -s tests -v   exit 0, "Ran 23 tests", OK
+      (original source: Ran 21 tests, OK)
+  ruff check .                               exit 1, 8 findings, identical rule counts
+      before and after (B023 x3, EXE001, I001, PLW1510 x2, RUF100). The findings are in
+      files and lines this change does not touch. No CI configuration exists in this
+      repository, so there is no CI-defined lint gate.
+      Effective Ruff configuration (from `ruff check --show-settings
+      v4_exit_quote/core.py`, output not stored in this repository): the pyproject.toml has
+      no [tool.ruff] section, no ruff.toml or .ruff.toml was found in the checkout or
+      its parent directories, and no user-level Ruff config directory exists. The
+      enabled rule list is identical (about 407 rules, including families such as B,
+      UP, SIM, RUF and PLW) with and without `--isolated`, so no config file
+      contributed to it. Target version 3.10 comes from requires-python. These
+      settings are what Ruff 0.17.6 applies on this machine without configuration.
+      Why evidence/lint.txt (older, "All checks passed") differs is not established.
+  ruff format --check .                      exit 0, 8 files already formatted
+  python3 examples/run_local_demo.py         exit 0 before and after; outputs equal apart
+      from transaction hashes, which differ between runs of the unmodified source too.
+
+Malformed-RPC CLI cases (mock JSON-RPC server, stdlib only), four cases:
+  original: exit 1, Python traceback on stderr, nothing on stdout
+  patched:  exit 2, one JSON object on stderr with code INVALID_RPC_RESPONSE, nothing on stdout
+
+Not covered: a live RPC node, Ruff versions or rule sets other than the one described
+above, Python versions other than the one above.

@@ -64,6 +64,20 @@ def raw_hex(value: str) -> bytes:
     return bytes.fromhex(value[2:])
 
 
+def quantity(value: Any, field: str) -> int:
+    """Parse a JSON-RPC hex quantity string, failing closed on any other shape.
+
+    Requires the 0x prefix and hex digits only. Leading zeros are tolerated on
+    purpose for node compatibility, so this does not enforce canonical encoding.
+    """
+    require(
+        isinstance(value, str) and re.fullmatch(r"0x[0-9a-fA-F]+", value) is not None,
+        "INVALID_RPC_RESPONSE",
+        f"RPC returned an invalid {field}.",
+    )
+    return int(value, 16)
+
+
 def uint(value: int, bits: int = 256) -> int:
     require(
         type(value) is int and 0 <= value < (1 << bits),
@@ -443,7 +457,7 @@ def quote(
     hook_data = raw_hex(request.hook_data)
     require(len(hook_data) <= 65536, "INVALID_HOOK_DATA", "Hook data exceeds 64 KiB.")
     require(
-        int(rpc.call("eth_chainId", []), 16) == request.chain_id,
+        quantity(rpc.call("eth_chainId", []), "chain id") == request.chain_id,
         "WRONG_CHAIN",
         "RPC chain id differs from requested chain.",
     )
@@ -461,7 +475,9 @@ def quote(
     )
     tag, block_hash = block["number"], block["hash"]
     require(len(raw_hex(block_hash)) == 32, "INVALID_BLOCK", "Invalid block hash.")
-    deadline = int(block["timestamp"], 16) + request.ttl
+    block_number = quantity(tag, "block number")
+    block_timestamp = quantity(block["timestamp"], "block timestamp")
+    deadline = block_timestamp + request.ttl
 
     def call(to: str, data: str) -> str:
         return rpc.call("eth_call", [{"to": to, "data": data}, tag])
@@ -592,9 +608,9 @@ def quote(
         "status": "simulated",
         "chain_id": str(request.chain_id),
         "block": {
-            "number": str(int(tag, 16)),
+            "number": str(block_number),
             "hash": block_hash,
-            "timestamp": str(int(block["timestamp"], 16)),
+            "timestamp": str(block_timestamp),
         },
         "position_manager": posm,
         "pool_manager": manager,

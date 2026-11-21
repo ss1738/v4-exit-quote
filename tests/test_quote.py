@@ -14,6 +14,7 @@ from v4_exit_quote.core import (
     extract_deltas,
     manager_input,
     minima,
+    quantity,
     quote,
     unpack_delta,
     word,
@@ -250,6 +251,49 @@ class QuoteTests(unittest.TestCase):
     def test_bad_addresses(self):
         for value in ("0x123", "0x" + "gg" * 20, "not-an-address", None):
             self.expect_code("INVALID_ADDRESS", lambda: address(value))
+
+    def test_malformed_rpc_quantities_are_quote_errors(self):
+        # A syntactically valid JSON-RPC reply with a bad hex quantity must fail
+        # closed with a QuoteError, which the CLI reports as JSON with exit code 2.
+        good_block = {"number": "0x64", "hash": "0x" + "aa" * 32, "timestamp": "0x3e8"}
+        cases = [
+            ("eth_chainId", None),
+            ("eth_chainId", 31337),
+            ("eth_chainId", "0xzz"),
+            ("eth_chainId", "0x"),
+            ("eth_chainId", "7a69"),
+            ("eth_getBlockByNumber", good_block | {"timestamp": "zz"}),
+            ("eth_getBlockByNumber", good_block | {"timestamp": 1000}),
+            ("eth_getBlockByNumber", good_block | {"number": 100}),
+            ("eth_getBlockByNumber", good_block | {"number": "0xzz"}),
+        ]
+        for method, value in cases:
+            with self.subTest(method=method, value=value):
+                rpc = FakeRpc()
+                original = rpc.call
+
+                def call(name, params, original=original, method=method, value=value):
+                    result = original(name, params)
+                    return value if name == method else result
+
+                rpc.call = call
+                self.expect_code(
+                    "INVALID_RPC_RESPONSE", lambda rpc=rpc: quote(rpc, request())
+                )
+
+    def test_quantity_parses_valid_hex_strings(self):
+        cases = [
+            ("0x0", 0),
+            ("0x64", 100),
+            ("0xFF", 255),
+            ("0xAbC", 2748),
+            # Leading zeros are accepted on purpose for node compatibility. The
+            # helper checks shape and digits; it does not enforce canonical form.
+            ("0x0064", 100),
+        ]
+        for text, expected in cases:
+            with self.subTest(text=text):
+                self.assertEqual(quantity(text, "value"), expected)
 
     def test_write_methods_unavailable(self):
         rpc = Rpc("http://127.0.0.1:1")
